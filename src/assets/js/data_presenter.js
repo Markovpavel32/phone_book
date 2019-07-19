@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import moment from 'moment'
 
 class SortableUsers {
   constructor (users) {
@@ -15,7 +16,20 @@ class SortableUsers {
   }
 
   sort_by (sort_by) {
-    return this.sort_obj[sort_by]()
+    this.users = this.sort_obj[sort_by]()
+    return this
+  }
+
+  filter_by (value, date) {
+    this.users = this.users.filter(x => {
+      return x.name.first.includes(value) ||
+      x.name.last.includes(value) ||
+      capitalize(x.name.last).includes(value) ||
+      capitalize(x.name.first).includes(value)
+    }).filter(x => {
+      return moment(x.dob.date).format('DD.MM.YYYY').includes(date)
+    })
+    return this
   }
 }
 
@@ -32,6 +46,12 @@ const sort_by = (arr, path, direction) => {
   }
 }
 
+const capitalize = (s) => {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+
 export {
-  SortableUsers
+  SortableUsers, capitalize
 }
