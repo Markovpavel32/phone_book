@@ -28,7 +28,7 @@ export default {
     }
   },
   computed: {
-    capitlized_title () {
+    capitalized_title () {
       return this.capitalize(this.user.name.title)
     },
     capitalized_name_first () {

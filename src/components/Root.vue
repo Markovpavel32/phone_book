@@ -60,9 +60,8 @@ export default {
       this.sort_by === 'sort_by_date_up' ? this.sort_by = 'sort_by_date_down' : this.sort_by = 'sort_by_date_up'
     },
     replace (user) {
-      console.log(user.id.value)
-      this.$router.push({ name: 'user_page', params: { id: user.id.value, user: user } })
+      this.$router.push({ name: 'user_page', params: { id: user.id.value } })
     }
-  },
+  }
 }
 </script>

@@ -24,7 +24,7 @@ export default {
   name: 'user-page',
   computed: {
     user () {
-      return this.$route.params.user || this.$store.state.current_user
+      return this.$route.params.user || this.$store.getters.get_user_by_id(this.$route.params.id)
     },
     capitalized_title () {
       return this.user && this.capitalize(this.user.name.title)
@@ -41,11 +41,8 @@ export default {
       return capitalize(s)
     },
     show () {
-      this.$modal.show('full-img');
+      this.$modal.show('full-img')
     }
-  },
-  created () {
-    if (!this.$route.params.user) this.$store.dispatch('load_user', { id: this.$route.params.id })
   }
 }
 </script>
