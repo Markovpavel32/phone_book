@@ -28,7 +28,7 @@ export default new Vuex.Store({
   },
   getters: {
     get_user_by_id: state => id => {
-      return state.users.find(user => user.id.value === id);
+      return state.users.find(user => user.id.value === id)
     }
   }
 })

@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="flex flex-row justify-center" v-for="user in users" :key="user.id.value" @click="replace(user)">
-        <user-card class="mt-6 border-gray-400 rounded border-2"  :user="user" style="min-width: 400px"></user-card>
+        <user-card class="mt-6 border-gray-400 rounded border-2 cursor-pointer"  :user="user" style="min-width: 400px"></user-card>
       </div>
     </div>
   </div>

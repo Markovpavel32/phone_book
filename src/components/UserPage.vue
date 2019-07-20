@@ -2,7 +2,7 @@
   <div v-if="user">
     <h1 class="flex py-4 mx-auto justify-center text-4xl">{{capitalized_title}} {{capitalized_name_first}} {{capitalized_name_last}}</h1>
     <div class="flex justify-center">
-      <img @click="show" :src="user.picture.large" class="p-4 w-1/4"/>
+      <img @click="show" :src="user.picture.large" class="p-4 w-1/4 cursor-pointer"/>
       <div class="p-4">
         <div class="p-3 border-l-2 border-orange-700">{{'email: ' + user.email}}</div>
         <div class="p-3 border-l-2 border-orange-700">{{'phone: ' + user.phone}}</div>
