@@ -1,16 +1,16 @@
 <template>
   <div v-if="user">
-    <h1 class="flex py-4 mx-auto justify-center text-4xl">{{capitalized_title}} {{capitalized_name_first}} {{capitalized_name_last}}</h1>
-    <div class="flex justify-center">
-      <img @click="show" :src="user.picture.large" class="p-4 w-1/4 cursor-pointer"/>
-      <div class="p-4">
-        <div class="p-3 border-l-2 border-orange-700">{{'email: ' + user.email}}</div>
-        <div class="p-3 border-l-2 border-orange-700">{{'phone: ' + user.phone}}</div>
+    <div v-if="!show_img">
+      <h1 class="flex py-4 mx-auto justify-center text-4xl">{{capitalized_title}} {{capitalized_name_first}} {{capitalized_name_last}}</h1>
+      <div class="flex justify-center flex-wrap">
+        <img @click="show_img = true" :src="user.picture.large" class="p-4 cursor-pointer"/>
+        <div class="p-4">
+          <div class="p-3 border-l-2 border-orange-700">{{'email: ' + user.email}}</div>
+          <div class="p-3 border-l-2 border-orange-700">{{'phone: ' + user.phone}}</div>
+        </div>
       </div>
     </div>
-    <modal name="full-img" height="75%">
-      <img @click="show" :src="user.picture.large" class="p-4 w-full h-full"/>
-    </modal>
+    <img v-else @click="show_img = false" :src="user.picture.large" class="p-4 w-full h-full"/>
   </div>
 </template>
 
@@ -22,6 +22,11 @@ import Vue from 'vue'
 Vue.use(VModal)
 export default {
   name: 'user-page',
+  data () {
+    return {
+      show_img: false
+    }
+  },
   computed: {
     user () {
       return this.$route.params.user || this.$store.getters.get_user_by_id(this.$route.params.id)
@@ -39,9 +44,6 @@ export default {
   methods: {
     capitalize (s) {
       return capitalize(s)
-    },
-    show () {
-      this.$modal.show('full-img')
     }
   }
 }

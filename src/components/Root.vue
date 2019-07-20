@@ -23,7 +23,7 @@
           <input type="text" v-model="date" class="float-right shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
         </div>
       </div>
-      <div class="flex flex-row justify-center" v-for="user in users" :key="user.id.value" @click="replace(user)">
+      <div class="flex justify-center" v-for="user in users" :key="user.id.value" @click="replace(user)">
         <user-card class="mt-6 border-gray-400 rounded border-2 cursor-pointer"  :user="user" style="min-width: 400px"></user-card>
       </div>
     </div>
@@ -36,6 +36,7 @@ import { SortableUsers } from '../assets/js/data_presenter'
 
 export default {
   name: 'root',
+  components: { UserCard },
   data () {
     return {
       sort_by: 'no-sorting',
@@ -43,7 +44,6 @@ export default {
       date: ''
     }
   },
-  components: { UserCard },
   computed: {
     users () {
       return new SortableUsers(this.$store.state.users).sort_by(this.sort_by).filter_by(this.find_name, this.date).users
@@ -51,13 +51,14 @@ export default {
   },
   methods: {
     sort_by_first () {
-      this.sort_by === 'sort_by_first_up' ? this.sort_by = 'sort_by_first_down' : this.sort_by = 'sort_by_first_up'
+      this.sort_by = (this.sort_by === 'sort_by_first_up') ? 'sort_by_first_down' : 'sort_by_first_up'
+      // this.sort_by === 'sort_by_first_up' ? this.sort_by = 'sort_by_first_down' : this.sort_by = 'sort_by_first_up'
     },
     sort_by_last () {
-      this.sort_by === 'sort_by_last_up' ? this.sort_by = 'sort_by_last_down' : this.sort_by = 'sort_by_last_up'
+      this.sort_by = (this.sort_by === 'sort_by_last_up') ? this.sort_by = 'sort_by_last_down' : this.sort_by = 'sort_by_last_up'
     },
     sort_by_date () {
-      this.sort_by === 'sort_by_date_up' ? this.sort_by = 'sort_by_date_down' : this.sort_by = 'sort_by_date_up'
+      this.sort_by = (this.sort_by === 'sort_by_date_up') ? this.sort_by = 'sort_by_date_down' : this.sort_by = 'sort_by_date_up'
     },
     replace (user) {
       this.$router.push({ name: 'user_page', params: { id: user.id.value } })
