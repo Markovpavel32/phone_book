@@ -8,7 +8,7 @@
         <button class="inline-block m-2 p-3 border-orange-400 border-2" @click="sort_by_date">{{'По дате рождения'}}</button>
       </div>
       <div class="flex justify-center py-4">
-        <div style="min-width: 400px">
+        <div style="min-width: 320px">
           <label class="text-gray-700 text-sm font-bold mb-2 float-le ft">
             {{'Найти по имени:'}}
           </label>
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="flex justify-center py-4" >
-        <div style="min-width: 400px">
+        <div style="min-width: 320px">
           <label class="text-gray-700 text-sm font-bold mb-2 float-left">
             {{'Найти по дате рождения:'}}
           </label>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="flex justify-center" v-for="user in users" :key="user.id.value" @click="replace(user)">
-        <user-card class="mt-6 border-gray-400 rounded border-2 cursor-pointer"  :user="user" style="min-width: 400px"></user-card>
+        <user-card class="mt-6 border-gray-400 rounded border-2 cursor-pointer"  :user="user" style="min-width: 320px"></user-card>
       </div>
     </div>
   </div>

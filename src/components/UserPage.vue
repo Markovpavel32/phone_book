@@ -10,7 +10,7 @@
         </div>
       </div>
     </div>
-    <img v-else @click="show_img = false" :src="user.picture.large" class="p-4 w-full h-full"/>
+    <img v-else @click="show_img = false" :src="user.picture.large" class="p-4 h-full"/>
   </div>
 </template>
 
